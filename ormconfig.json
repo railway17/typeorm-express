@@ -4,8 +4,8 @@
   "port": 3306,
   "username": "root",
   "password": "",
-  "database": "nodejs2",
-  "synchronize": false,
+  "database": "call",
+  "synchronize": true,
   "logging": true,
   "entities": [
     "dist/entity/*.js"

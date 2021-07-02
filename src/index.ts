@@ -6,7 +6,6 @@ import * as bodyParser from "body-parser";
 
 //controller
 import * as HomeController from "./controller/Home";
-import * as PostController from "./controller/Post";
 
 
 // create connection with database
@@ -14,7 +13,7 @@ import * as PostController from "./controller/Post";
 // TypeORM creates connection pools and uses them for your requests
 createConnection().then(async connection => {    
 
-    console.log("Express application is up and running on port 3000");
+    console.log("Express application is up and running on port 5000");
 
 }).catch(error => console.log("TypeORM connection error: ", error));
 
@@ -22,10 +21,9 @@ createConnection().then(async connection => {
 const app = express();
 app.use(bodyParser.json());
 
-//primary routes
-app.get("/", HomeController.showHomePage);
-app.get("/posts", PostController.getAllPosts);
-app.get("/posts/add", PostController.saveAllPosts);
+//status routes with type variable to valiate data type between CallHistory (1), CallRecording (2), Transcriptions (3)
+app.post("/status/:type", HomeController.saveStatus);
+app.get("/get/:type", HomeController.getAllByType);
 
 // run app
-app.listen(3000);
+app.listen(5000);
